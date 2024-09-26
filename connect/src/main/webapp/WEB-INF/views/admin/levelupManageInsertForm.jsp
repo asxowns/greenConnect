@@ -226,6 +226,7 @@ table input[type="submit"] {
 		
 		
 		const rankInput = document.querySelector("input[name='rank']");
+		let isDuplicate = false;
 		
 		rankInput.addEventListener("input", ()=>{
 			const inputRank = rankInput.value.trim();
@@ -237,7 +238,7 @@ table input[type="submit"] {
 			fetch("/getRanks")
 			.then((response)=> response.json())
 			.then((data)=> {
-				const isDuplicate = data.some(item => item.rank == inputRank);
+				isDuplicate = data.some(item => item.rank == inputRank);
 				const msg = document.getElementById('duplicateMsg');
 				if(isDuplicate){
 					msg.innerHTML = "중복 입니다.";
@@ -248,6 +249,15 @@ table input[type="submit"] {
 				}
 			})
 		});
+		
+		const form = document.querySelector('form');
+		form.addEventListener('submit', (e)=>{
+			if(isDuplicate){
+				e.preventDefault();
+				alert('중복된 등급 번호 입니다. 다른 번호를 입력해주세요.');
+				rankInput.focus();
+			}
+		})
 	</script>
 
 
