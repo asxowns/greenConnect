@@ -1,6 +1,7 @@
 package com.green.connect.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +18,9 @@ public class UserService {
 
     @Autowired
     private EmailDao emailDao;
+    
+    @Autowired
+    private BCryptPasswordEncoder bcryptPasswordEncoder;
 
     @Transactional
     public void registerUser(User user, String email) {
@@ -25,6 +29,7 @@ public class UserService {
         }
 
         user.setRole("ROLE_USER");
+        user.setPassword(bcryptPasswordEncoder.encode(user.getPassword()));
         joinDao.insertUser(user);
         
         Email emailVerification = emailDao.getVerificationByEmail(email);
