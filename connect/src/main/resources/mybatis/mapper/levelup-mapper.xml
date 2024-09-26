@@ -25,5 +25,9 @@
 	<delete id="deleteLevelUp">
 		delete from levelup where levelno = #{levelno}
 	</delete>
+	
+	<select id="getRank">
+		select rank from levelup
+	</select>
 
 </mapper>

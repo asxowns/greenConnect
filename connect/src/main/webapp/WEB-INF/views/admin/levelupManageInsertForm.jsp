@@ -94,8 +94,9 @@ table input[type="text"] {
 	border: none;
 	border-bottom: 1px solid #ccc;
 }
-table input[name="description"]{
-	width:100%;
+
+table input[name="description"] {
+	width: 100%;
 }
 
 table input[type="text"]:focus {
@@ -103,21 +104,28 @@ table input[type="text"]:focus {
 	border-bottom: 1px solid #0091DB;
 }
 
-.levelIconArea{
-	display:flex;
-	align-items:center;
-}
-.levelIconArea img{
-	padding-right:10px;
+.levelIconArea {
+	display: flex;
+	align-items: center;
 }
 
-table input[type="submit"]{
-	width:200px;
-	height:30px;
-	border:1px solid #ccc;
-	border-radius:5px;
-	background:#f7f7f7;
-	cursor:pointer;
+.levelIconArea img {
+	padding-right: 10px;
+}
+
+table input[type="submit"] {
+	width: 200px;
+	height: 30px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	background: #f7f7f7;
+	cursor: pointer;
+}
+
+#duplicateMsg{
+	display:inline-block;
+	font-size:14px;
+	margin-left:10px;
 }
 </style>
 </head>
@@ -170,14 +178,14 @@ table input[type="submit"]{
 						<th>등급 아이콘</th>
 						<td>
 							<div class="levelIconArea">
-								<img id="imagePreview" src="">
-								<input type="file" id="levelIcon" name="levelIconFile" accept="image/*">
+								<img id="imagePreview" src=""> <input type="file"
+									id="levelIcon" name="levelIconFile" accept="image/*">
 							</div>
 						</td>
 					</tr>
 					<tr>
 						<th>등급 번호</th>
-						<td><input type="text" name="rank"></td>
+						<td><input type="text" name="rank"><span id="duplicateMsg"></span></td>
 					</tr>
 					<tr>
 						<th>등급 설명</th>
@@ -215,6 +223,31 @@ table input[type="submit"]{
 						imagePreview.src = "${levelup.levelIcon}";
 					}
 				});
+		
+		
+		const rankInput = document.querySelector("input[name='rank']");
+		
+		rankInput.addEventListener("input", ()=>{
+			const inputRank = rankInput.value.trim();
+			if(inputRank === ""){
+				console.log("Rank is empty");
+				return;
+			}
+			
+			fetch("/getRanks")
+			.then((response)=> response.json())
+			.then((data)=> {
+				const isDuplicate = data.some(item => item.rank == inputRank);
+				const msg = document.getElementById('duplicateMsg');
+				if(isDuplicate){
+					msg.innerHTML = "중복 입니다.";
+					msg.style.color ="red";
+				}else{
+					msg.innerHTML = "사용 가능합니다.";
+					msg.style.color="blue";
+				}
+			})
+		});
 	</script>
 
 

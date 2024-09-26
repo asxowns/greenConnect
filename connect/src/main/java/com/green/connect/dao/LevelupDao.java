@@ -19,5 +19,7 @@ public interface LevelupDao {
 	int insertLevelUp(LevelUp levelup);
 	
 	int deleteLevelUp(@Param("levelno") int levelno);
+	
+	List<LevelUp> getRank();
 
 }
