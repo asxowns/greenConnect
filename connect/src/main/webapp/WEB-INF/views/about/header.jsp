@@ -36,7 +36,7 @@ body{
 <body>
 	<header>
 		<div id="head">
-			<a href="/"><img src="./resource/img/gc_logo.png"></a>
+			<a href="/"><img src="../resource/img/gc_logo.png"></a>
 		</div>
 	</header>
 </body>

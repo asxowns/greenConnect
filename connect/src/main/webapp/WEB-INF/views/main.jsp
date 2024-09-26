@@ -97,7 +97,7 @@ section {
 				</div>
 				<div class="funcInfo">
 					<p class="myPage">
-						<a href="">마이 페이지</a>
+						<a href="/my/myPageMain">마이 페이지</a>
 					</p>
 					<p class="sendDm">
 						<a href="#" onclick="return openDmWindow();">쪽지 보내기</a>
