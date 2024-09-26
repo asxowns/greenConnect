@@ -1,5 +1,7 @@
 package com.green.connect.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.green.connect.dao.EmailDao;
-import com.green.connect.dto.Email;
+import com.green.connect.dao.JoinDao;
 import com.green.connect.dto.User;
 import com.green.connect.service.MailService;
 import com.green.connect.service.UserService;
@@ -31,6 +33,9 @@ public class JoinController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private JoinDao joinDao;
 	
 	@RequestMapping("/joinForm")
 	public String joinForm() {
@@ -87,6 +92,13 @@ public class JoinController {
 	        log.error("Error during user registration", e);
 	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("회원가입에 실패했습니다: " + e.getMessage());
 	    }
+	}
+	
+	@RequestMapping("/getUsername")
+	@ResponseBody
+	public List<User> getUsername() {
+		
+		return joinDao.getUsername();
 	}
 	
 

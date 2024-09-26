@@ -12,5 +12,9 @@
     <select id="countByEmail" parameterType="string" resultType="int">
         SELECT COUNT(*) FROM user WHERE email = #{email}
     </select>
+    
+   	<select id="getUsername">
+   		select username from user
+   	</select>
 	
 </mapper>
