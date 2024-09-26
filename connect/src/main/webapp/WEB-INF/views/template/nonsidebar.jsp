@@ -8,7 +8,7 @@
 <style>
 main {
 	width: 1100px;
-	margin: 0 auto;
+	margin: 80px auto;
 	display: flex;
 	justify-content:space-between;
 }
