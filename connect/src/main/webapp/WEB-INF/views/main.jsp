@@ -29,10 +29,6 @@ section {
 	border-bottom: 2px solid #000;
 }
 
-.userInfo{
-	
-}
-
 .myPage{
 	text-align:center;
 }
@@ -66,15 +62,43 @@ section {
 	margin:15px 0;
 }
 
-.searchBox{
-	text-align:center;
-}
 
 .boardList{
 	padding:20px;
 }
 .boardList ul li{
 	margin-bottom:20px;
+}
+
+.searchBox{
+	margin-bottom:20px;
+}
+.searchBox form{
+	display:flex;
+	justify-content:center;
+	margin:0;
+	padding:0;
+}
+.searchBox input[type="text"]{
+	width:140px;
+	height:35px;
+	border:1px solid #ccc;
+	border-radius:5px 0 0 5px;
+	box-sizing:border-box;
+	padding-left:5px;
+}
+.searchBox input[type="text"]:focus{
+	outline:none;
+	border:1px solid #0091DB;
+}
+.searchBox input[type="submit"]{
+	width:47px;
+	height:35px;
+	border:none;
+	border-radius:0 5px 5px 0;
+	background:#0091DB;
+	color:#fff;
+	cursor:pointer;
 }
 </style>
 </head>
@@ -96,15 +120,18 @@ section {
 					</p>
 				</div>
 				<div class="funcInfo">
-					<p class="myPage">
+					<div class="myPage">
 						<a href="/my/myPageMain">마이 페이지</a>
-					</p>
-					<p class="sendDm">
+					</div>
+					<div class="sendDm">
 						<a href="#" onclick="return openDmWindow();">쪽지 보내기</a>
-					</p>
-					<p class="searchBox">
-						<input type="search">
-					</p>
+					</div>
+					<div class="searchBox">
+						<form>
+							<input type="text">
+							<input type="submit" value="검색" id="submitBtn">
+						</form>
+					</div>
 				</div>
 			</div>
 			
