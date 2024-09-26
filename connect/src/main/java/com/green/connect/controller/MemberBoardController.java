@@ -3,6 +3,7 @@ package com.green.connect.controller;
 import java.io.File;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -17,6 +18,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.green.connect.dao.IBoardDao;
 import com.green.connect.dto.Board;
+import com.green.connect.dto.Like;
+import com.green.connect.dto.Reply;
+import com.green.connect.dto.User;
 
 @Controller
 @RequestMapping("/member")
@@ -107,7 +111,70 @@ public class MemberBoardController {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 		String strFormatDate = sdf.format(regDate);
 		model.addAttribute("regDate", strFormatDate);
-		
+		//임시 로그인 유저네임
+		String loginUsername = "user2";
+		//좋아요 이모지 상태 
+		Like likeState = iBoardDao.getLikeState(loginUsername, bno);
+		if(likeState == null || !likeState.isLikeState()) {
+			model.addAttribute("likeState", 0);
+		} else if(likeState.isLikeState()) {
+			model.addAttribute("likeState", 1);
+		}
+		//해당 게시물 총 좋아요 수
+		model.addAttribute("totalLike", iBoardDao.getBoardTotalLike(bno));
+		//해당 게시물 댓글 리스트
+		//댓글 작성자 이름 출력
+		List<Reply> replyList = iBoardDao.getReplyList(bno);
+		List<Reply> newReplyList = new ArrayList<>();
+		for(Reply reply : replyList) {
+			//username값을 통해서 얻어낸 실제 이름 데이터
+			String replyUsername = reply.getUsername();
+			User replyUser = iBoardDao.getUserName(replyUsername);
+			reply.setName(replyUser.getName());
+			//댓글 작성일자 포맷
+			Date replyRegDate = reply.getReplyDate();
+			String formatDate = sdf.format(replyRegDate);
+			reply.setFormatDate(formatDate);
+			System.out.println("replyUsername: " + replyUsername + ", replyDate : " + replyRegDate);
+			newReplyList.add(reply);
+			System.out.println("reply : " + reply);
+			
+		}
+		model.addAttribute("replyList", newReplyList);
+		//댓글창 로그인한 사람 이름 노출
+		model.addAttribute("loginUser", iBoardDao.getUserName(loginUsername));
+
 		return "member/detailPage";
 	}
+	
+	@RequestMapping("/regReply")
+	public String regReply(@RequestParam("replyContent") String replyContent, @RequestParam("username") String username, @RequestParam("bno") int bno) {
+		System.out.println("replyContent : " + replyContent + ", username : " + username + ", bno : " + bno);
+		Date replyDate = new Date();
+		Reply reply = new Reply(replyContent, replyDate, username, bno);
+		iBoardDao.regReply(reply);
+		return "redirect:/member/boardDetail?bno="+bno;
+	}
+	
+	@RequestMapping("/updateLikeState")
+	public String boardLike(@RequestParam("bno") int bno, @RequestParam("likeState") int likeState, @RequestParam("username") String username) {
+		System.out.println("좋아요 컨트롤러~~~~~~");
+		System.out.println("bno : " + bno + ", likeState : " + likeState + ", username : " + username);
+		int likeCheck = iBoardDao.getBoardLikeCheck(bno, username);
+		
+		if(likeCheck == 0) {
+			Like like = new Like(username, bno, true);
+			iBoardDao.regBoardLike(like);
+		} else {
+			if(likeState == 0) {
+				iBoardDao.updateBoardLike(bno, username, true);
+			} else if(likeState == 1) {
+				iBoardDao.updateBoardLike(bno, username, false);
+			} 
+		}
+		
+		
+		return "redirect:/member/boardDetail?bno="+bno;
+	}
+	
 }

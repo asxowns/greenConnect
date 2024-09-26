@@ -27,5 +27,26 @@
 	<update id="boardViewCnt">
 	update board set view = #{view} where bno = #{bno}
 	</update>
-
+	<select id="getLikeState">
+	select * from `like` where username = #{username} and bno = #{bno}
+	</select>
+	<select id="getBoardTotalLike">
+	select count(*) from `like` where bno = #{bno} and likeState = 1
+	</select>
+	<select id="getBoardLikeCheck">
+	select count(*) from `like` where bno = #{bno} and username = #{username}
+	</select>
+	<insert id="regBoardLike">
+	insert into `like` (username, bno, likeState) values (#{like.username}, #{like.bno}, #{like.likeState})
+	</insert>
+	<update id="updateBoardLike">
+	update `like` set likeState = #{likeState} where username = #{username} and bno = #{bno}
+	</update>
+	<select id="getReplyList">
+	select * from reply where bno = #{bno}
+	</select>
+	<insert id="regReply">
+	insert into reply (replyContent, replyDate, username, bno) values (#{reply.replyContent}, #{reply.replyDate}, #{reply.username}, #{reply.bno})
+	</insert>
+	
 </mapper>
