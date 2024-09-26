@@ -27,20 +27,22 @@ input {
 	margin: 10px 0;
 	padding: 12px;
 	width: 200px;
-	
 }
-h3{
+
+h3 {
 	margin: 70px;
 }
-#by-submit{
+
+#by-submit {
 	margin-top: 20px;
 	background-color: #0091DB;
-	border : none;
+	border: none;
 	border-radius: 5px;
 	color: white;
 	cursor: pointer;
 }
-#by-submit:hover{
+
+#by-submit:hover {
 	background-color: #0078b5;
 }
 </style>
@@ -58,5 +60,9 @@ h3{
 
 
 	</main>
+
+	<script>
+
+	</script>
 </body>
 </html>
