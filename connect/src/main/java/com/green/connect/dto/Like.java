@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class Like {
 	
 	private int likeno;
-	
 	private String username;
 	private int bno;
+	private boolean likeState;
 }

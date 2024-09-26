@@ -37,8 +37,15 @@ section {
 		</aside>
 
 		<section>
-			${boardDetail.title }<br>
-			
+			<div>${categoryName}</div>
+			<div>${boardDetail.title }</div>
+			<div>
+				<div>${user.name }</div>
+				<div>${regDate }</div>
+				<div>조회 ${boardDetail.view }</div>
+			</div>
+			<hr>
+			<div>${boardDetail.content }</div>
 			<p></p>
 		</section>
 	</main>

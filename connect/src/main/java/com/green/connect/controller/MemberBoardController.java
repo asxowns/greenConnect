@@ -2,6 +2,7 @@ package com.green.connect.controller;
 
 import java.io.File;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -87,8 +88,26 @@ public class MemberBoardController {
 	
 	@RequestMapping("/boardDetail")
 	public String boardDetail(@RequestParam("bno") int bno, Model model) {
-		System.out.println("bno : " + bno);
-		model.addAttribute("boardDetail",iBoardDao.getBoardDetail(bno));
+		System.out.println("bno : " + bno); 
+		Board boardDetail = iBoardDao.getBoardDetail(bno);
+		//조회수 카운트
+		int view = boardDetail.getView() + 1;
+		System.out.println("view: " + view);
+		iBoardDao.boardViewCnt(view, bno);
+		//게시판 디테일 내용
+		boardDetail.setView(view);
+		model.addAttribute("boardDetail",boardDetail);
+		//카테고리 이름
+		model.addAttribute("categoryName", iBoardDao.getCategoryName(boardDetail.getCategoryNo()));
+		//게시판 글 작성자 정보
+		String username = boardDetail.getUsername();
+		model.addAttribute("user", iBoardDao.getUserName(username));
+		//작성일자 포맷
+		Date regDate = boardDetail.getRegDate();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+		String strFormatDate = sdf.format(regDate);
+		model.addAttribute("regDate", strFormatDate);
+		
 		return "member/detailPage";
 	}
 }
