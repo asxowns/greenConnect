@@ -172,4 +172,16 @@ public class LevelupController {
 		return "redirect:levelupManageList";
 	}
 
+	@RequestMapping("/deleteLevelup")
+	public String deleteLevelUp(@RequestParam("levelno") int levelno) {
+		
+		dao.deleteLevelUp(levelno);
+		
+		return "redirect:levelupManageList";
+	}
+	
+	
+	
+	
+	
 }

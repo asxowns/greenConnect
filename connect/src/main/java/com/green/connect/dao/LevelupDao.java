@@ -17,5 +17,7 @@ public interface LevelupDao {
 	int updateLevelUp(LevelUp levelup);
 	
 	int insertLevelUp(LevelUp levelup);
+	
+	int deleteLevelUp(@Param("levelno") int levelno);
 
 }

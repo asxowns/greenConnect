@@ -94,45 +94,58 @@ section {
 	color: #7f7f7f;
 }
 
-.levelupTitle li:first-child {
+.levelupTitle li:nth-child(1) {
 	width: 20%;
 	text-align: center;
 }
 
-.levelupTitle li:last-child {
+.levelupTitle li:nth-child(2) {
 	width: 80%;
 	text-align: center;
 }
 
 .levelupList {
 	display: flex;
+	align-items:center;
 }
 .levelupList:hover{
 	background:#f9f9f9;
 }
 
 .levelupList li {
+	display:flex;
 	font-size: 16px;
 	color: #000;
 	padding:20px 0;
 }
 
-.levelupList li:first-child {
+.levelupList li:nth-child(1) {
 	width: 20%;
 	text-align: left;
 	padding-left:50px;
 }
-.levelupList li:first-child img{
+.levelupList li:nth-child(1) img{
 	display:inline-block;
 	padding-right:15px;
 }
 
-.levelupList li:last-child {
+.levelupList li:nth-child(2) {
 	width: 80%;
 	text-align: left;
 	padding-left:100px;
 }
-
+.deleteBtn{
+	width:70px;
+	height:30px;
+	display:inline-block;
+	font-size:12px;
+	border:1px solid #ccc;
+	border-radius:5px;
+	background:#f7f7f7;
+	text-align:center;
+	line-height:30px;
+	margin-right:10px;
+}
 </style>
 </head>
 <body>
@@ -181,8 +194,9 @@ section {
 
 				<c:forEach var="level" items="${level }">
 					<ul class="levelupList" data-levelno="${level.levelno }">
-						<li><img src="${pageContext.request.contextPath}/images/${level.levelIcon}">${level.levelName}</li>
+						<li><img src="${pageContext.request.contextPath}/images/${level.levelIcon}"><span>${level.levelName}</span></li>
 						<li>${level.description }</li>
+						<a href="deleteLevelup?levelno=${level.levelno }" class="deleteBtn">삭제</a>
 					</ul>
 				</c:forEach>
 			</div>
