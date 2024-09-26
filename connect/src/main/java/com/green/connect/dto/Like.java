@@ -13,4 +13,13 @@ public class Like {
 	private String username;
 	private int bno;
 	private boolean likeState;
+	
+	public Like(String username, int bno, boolean likeState) {
+		super();
+		this.username = username;
+		this.bno = bno;
+		this.likeState = likeState;
+	}
+	
+	
 }
