@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,22 +28,20 @@ input {
 	margin: 10px 0;
 	padding: 12px;
 	width: 200px;
+	
 }
-
-h3 {
+h3{
 	margin: 70px;
 }
-
-#by-submit {
+#by-submit{
 	margin-top: 20px;
 	background-color: #0091DB;
-	border: none;
+	border : none;
 	border-radius: 5px;
 	color: white;
 	cursor: pointer;
 }
-
-#by-submit:hover {
+#by-submit:hover{
 	background-color: #0078b5;
 }
 </style>
@@ -58,11 +57,10 @@ h3 {
 			<input id="by-submit" type="submit" value="로그인">
 		</form>
 
-
+		<p style="color: red;">
+			<c:if test="${not empty error }">
+				${error }
+			</c:if>
 	</main>
-
-	<script>
-
-	</script>
 </body>
 </html>
