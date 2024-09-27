@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -112,12 +114,22 @@ section {
 		<aside>
 			<div class="aboutUser">
 				<div class="userInfo">
-					<p>
-						<a href="joinForm">회원가입</a>
-					</p>
-					<p>
-						<a href="loginForm">로그인</a>
-					</p>
+					<c:if test="${sessionScope.username eq ''}">
+						<p>
+							<a href="joinForm">회원가입</a>
+						</p>
+						<p>
+							<a href="loginForm">로그인</a>
+						</p>
+					</c:if>
+					<c:if test="${sessionScope.username ne ''}">
+						<p>
+							반갑습니다, <strong>${sessionScope.username}</strong>님🙂
+						</p>
+						<p>
+							<a href="logout">로그아웃</a>
+						</p>
+					</c:if>
 				</div>
 				<div class="funcInfo">
 					<div class="myPage">
@@ -154,7 +166,13 @@ section {
 		<%@include file="./about/footer.jsp"%>
 	</footer>
 
-
+	
+	<!-- 알림창 스크립트 -->
+	<c:if test="${not empty msg}">
+	    <script>
+	        alert("${msg}"); // 알림창 표시
+	    </script>
+	</c:if>
 
 	<script>
 		function openDmWindow() {
