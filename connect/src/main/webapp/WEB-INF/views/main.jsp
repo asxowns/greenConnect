@@ -137,10 +137,10 @@ section {
 			
 			<div class="boardList">
 				<ul>
-					<li><a herf="#">자유게시판</a></li>
-					<li><a herf="#">취업/면접 후기</a></li>
-					<li><a herf="#">직장 후기</a></li>
-					<li><a herf="#">꿀팁 게시판</a></li>
+					<li><a href="#">자유게시판</a></li>
+					<li><a href="#">취업/면접 후기</a></li>
+					<li><a href="#">직장 후기</a></li>
+					<li><a href="#">꿀팁 게시판</a></li>
 				</ul>
 			</div>
 		</aside>
