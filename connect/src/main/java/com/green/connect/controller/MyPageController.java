@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.green.connect.dao.MypageDao;
 import com.green.connect.dto.Board;
+import com.green.connect.dto.Like;
 import com.green.connect.dto.Reply;
 
 @Controller
@@ -39,13 +40,28 @@ public class MyPageController {
 	
 //	내가 작성한 댓글
 	@GetMapping("/myReplyList")
+	@ResponseBody
 	public List<Reply> myReplyList(@RequestParam("username") String username){
 	
 		List<Reply> replys = mypageDao.myReplyList(username);
 		System.out.println("reply: " + replys);
 		
 		return replys;
-		
 	}
+	
+//	내가 좋아요한 게시글
+	@GetMapping("/myLikeBoardList")
+	@ResponseBody
+	public List<Like> myLikeBoardList(@RequestParam("username") String username) {
+		
+		List<Like> likes = mypageDao.myLikeBoardList(username);
+		System.out.println(likes);
+		
+		return likes;
+	}
+	
+	
+	
+	
 	
 }
