@@ -20,7 +20,6 @@ aside {
 section {
 	width: 880px;
 	min-height: 800px;
-	border: 1px solid #ccc;
 }
 
 .aboutUser {
@@ -106,7 +105,7 @@ section {
 .boardList ul li {
 	margin-bottom: 20px;
 }
-.boardList ul li:nth-child(3) a{
+.boardList ul li:nth-child(1) a{
 	color:#0091DB;
 }
 
@@ -140,6 +139,11 @@ section {
 	background:#0091DB;
 	color:#fff;
 	cursor:pointer;
+}
+
+table,tr,th,td{
+	border:1px solid #ccc;
+	text-align:center;
 }
 </style>
 </head>
@@ -193,21 +197,166 @@ section {
 
 			<div class="boardList">
 				<ul>
-					<li><a href="#">내가 작성한 게시글</a></li>
-					<li><a href="#">내가 작성한 댓글</a></li>
-					<li><a href="/">내가 좋아요한 게시글</a></li>
+					<li><a href="/my/myPageMain">마이페이지 홈</a></li>
+					<li><a href="#" id="myBoardList">내가 작성한 게시글</a></li>
+					<li><a href="#" id="myReplyList">내가 작성한 댓글</a></li>
+					<li><a href="#" id="myLikeBoardList">내가 좋아요한 게시글</a></li>
 				</ul>
 			</div>
 		</aside>
 
 		<section>
-			<p>메인 컨텐츠</p>
+			<div id="mypageBoard">
+			
+			</div>
 		</section>
 	</main>
 
 	<footer>
 		<%@include file="../about/footer.jsp"%>
 	</footer>
+	
+	
+	
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			
+			const mypageBoard = document.getElementById('mypageBoard');
+			
+			const myBoardList = document.getElementById('myBoardList');
+			
+			/* 내가 작성한 게시글 */
+			myBoardList.addEventListener('click', ()=>{
+				mypageBoard.innerHTML = "<p>데이터를 불러오는 중...</p>";
+				
+				const section = document.querySelector('section');
+				const h1 = document.createElement("h1");
+				
+				h1.innerHTML = "내가 작성한 게시글";
+				
+				//요소 앞부분에 추가 (h1을 mypageBoard앞에 추가)
+				section.insertBefore(h1, mypageBoard);
+				
+				fetch('/my/myBoardList?username=user1',{
+					method: "GET"
+				})
+				.then(response => {
+					if(!response.ok){
+						throw new Error('Network response was not ok' + response.statusText);
+					}
+					return response.json();
+				})
+				.then(data => {
+					console.log("Recived data:", JSON.stringify(data, null, 2));
+					
+					if(Array.isArray(data)){
+						displayBoardList(data);
+					}else if(typeof data === 'object' && data !== null){
+						displayBoardList([data]);
+					}else{
+						console.error('Unexpected data format:', data);
+						mypageBoard.innerHTML = "<p>데이터를 불러오는데 문제가 발생했습니다.</p>"
+					}
+				})
+				.catch(error => {
+					console.error("ERROR: ", error);
+					mypageBoard.innerHTML = "<p>데이터를 불러오는데 문제가 발생했습니다!"+ error.message +"</p>"
+				})
+			});
+			
+			
+			function displayBoardList(boards){
+			    console.log("Boards received in displayBoardList:", JSON.stringify(boards, null, 2));
+			    console.log("mypageBoard element:", mypageBoard);
+			    
+			    boards.forEach(board => {
+			        console.log("Board item:", board);
+			        console.log("bno:", board.bno);
+			        console.log("title:", board.title);
+			        console.log("username:", board.username);
+			        console.log("regDate:", board.regDate);
+			    });
+			    
+			    if(!mypageBoard){
+			        console.error("mypageBoard element not found");
+			        return;
+			    }
+			    
+			    mypageBoard.innerHTML = "";
+			    
+			    if(!Array.isArray(boards) || boards.length === 0){
+			        mypageBoard.innerHTML = "<p>게시글이 없거나 데이터 형식이 올바르지 않습니다.</p>";
+			        return;
+			    }
+			    
+			    const table = document.createElement('table');
+			    table.style.width = '100%';
+			    table.style.borderCollapse = 'collapse';
+
+			    // 테이블 헤더 생성
+			    const thead = document.createElement('thead');
+			    const headerRow = document.createElement('tr');
+			    const headers = ['번호', '제목', '작성자', '작성일'];
+			    headers.forEach(text => {
+			        const th = document.createElement('th');
+			        th.textContent = text;
+			        headerRow.appendChild(th);
+			    });
+			    thead.appendChild(headerRow);
+			    table.appendChild(thead);
+			    
+			    // 테이블 본문 생성
+			    const tbody = document.createElement('tbody');
+			    boards.forEach((board, index) => {
+			        const tr = document.createElement('tr');
+
+			        // 번호
+			        const tdBno = document.createElement('td');
+			        tdBno.textContent = board.bno;
+			        tr.appendChild(tdBno);
+
+			        // 제목
+			        const tdTitle = document.createElement('td');
+			        tdTitle.textContent = board.title;
+			        tr.appendChild(tdTitle);
+
+			        // 작성자
+			        const tdUsername = document.createElement('td');
+			        tdUsername.textContent = board.username;
+			        tr.appendChild(tdUsername);
+
+			        // 작성일
+			        const tdRegDate = document.createElement('td');
+			        // 날짜 포맷팅 (옵션)
+			        const formattedDate = new Date(board.regDate).toLocaleDateString('ko-KR', {
+			            year: 'numeric',
+			            month: '2-digit',
+			            day: '2-digit'
+			        });
+			        tdRegDate.textContent = formattedDate;
+			        tr.appendChild(tdRegDate);
+
+			        tbody.appendChild(tr);
+			    });
+			    table.appendChild(tbody);
+			    
+			    mypageBoard.appendChild(table);
+			    console.log("Created table HTML:", table.outerHTML);
+			    console.log("mypageBoard content after append:", mypageBoard.innerHTML);
+			}
+			
+			
+			/* 내가 작성한 댓글 */
+			
+			
+
+		});
+		
+		
+		
+		
+		
+	</script>
 
 </body>
 </html>
