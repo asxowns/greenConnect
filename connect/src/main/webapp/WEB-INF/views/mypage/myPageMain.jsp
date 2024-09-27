@@ -10,7 +10,7 @@ main {
 	width: 1100px;
 	margin: 80px auto;
 	display: flex;
-	justify-content:space-between;
+	justify-content: space-between;
 }
 
 aside {
@@ -32,7 +32,7 @@ section {
 	align-items: center;
 	gap: 15px;
 	padding: 20px;
-	border-bottom:1px solid #eee;
+	border-bottom: 1px solid #eee;
 }
 
 .userInfo .userIcon {
@@ -41,33 +41,38 @@ section {
 	background: #d9d9d9;
 	border-radius: 50%;
 }
-.userInfo .nameBirth h3{
-	font-size:16px;
-	font-weight:300;
-	padding-bottom:2px;
-}
-.userInfo .nameBirth p{
-	font-size:12px;
-	color:#9d9d9d;
-	font-weight:300;
+
+.userInfo .nameBirth h3 {
+	font-size: 16px;
+	font-weight: 300;
+	padding-bottom: 2px;
 }
 
-.userState{
-	padding:15px;
-}
-.userState p{
-	display:flex;
-	justify-content:space-between;
-	font-size:12px;
-	margin-bottom:8px;
-}
-.userState p span{
-	color:#a7a7a7;
+.userInfo .nameBirth p {
+	font-size: 12px;
+	color: #9d9d9d;
+	font-weight: 300;
 }
 
-.myPage{
-	text-align:center;
+.userState {
+	padding: 15px;
 }
+
+.userState p {
+	display: flex;
+	justify-content: space-between;
+	font-size: 12px;
+	margin-bottom: 8px;
+}
+
+.userState p span {
+	color: #a7a7a7;
+}
+
+.myPage {
+	text-align: center;
+}
+
 .myPage a {
 	width: 187px;
 	height: 40px;
@@ -80,8 +85,8 @@ section {
 	font-size: 14px;
 }
 
-.sendDm{
-	text-align:center;
+.sendDm {
+	text-align: center;
 }
 
 .sendDm a {
@@ -95,7 +100,7 @@ section {
 	display: inline-block;
 	color: #000;
 	font-size: 14px;
-	margin:15px 0;
+	margin: 15px 0;
 }
 
 .boardList {
@@ -105,45 +110,50 @@ section {
 .boardList ul li {
 	margin-bottom: 20px;
 }
-.boardList ul li:nth-child(1) a{
-	color:#0091DB;
+
+.boardList ul li:nth-child(1) a {
+	color: #0091DB;
 }
 
-.searchBox{
-	margin-bottom:20px;
-}
-.searchBox form{
-	display:flex;
-	justify-content:center;
-	margin:0;
-	padding:0;
-}
-.searchBox input[type="text"]{
-	width:140px;
-	height:35px;
-	border:1px solid #ccc;
-	border-right:none;
-	border-radius:5px 0 0 5px;
-	box-sizing:border-box;
-	padding-left:5px;
-}
-.searchBox input[type="text"]:focus{
-	outline:none;
-	border:1px solid #0091DB;
-}
-.searchBox input[type="submit"]{
-	width:47px;
-	height:35px;
-	border:none;
-	border-radius:0 5px 5px 0;
-	background:#0091DB;
-	color:#fff;
-	cursor:pointer;
+.searchBox {
+	margin-bottom: 20px;
 }
 
-table,tr,th,td{
-	border:1px solid #ccc;
-	text-align:center;
+.searchBox form {
+	display: flex;
+	justify-content: center;
+	margin: 0;
+	padding: 0;
+}
+
+.searchBox input[type="text"] {
+	width: 140px;
+	height: 35px;
+	border: 1px solid #ccc;
+	border-right: none;
+	border-radius: 5px 0 0 5px;
+	box-sizing: border-box;
+	padding-left: 5px;
+}
+
+.searchBox input[type="text"]:focus {
+	outline: none;
+	border: 1px solid #0091DB;
+}
+
+.searchBox input[type="submit"] {
+	width: 47px;
+	height: 35px;
+	border: none;
+	border-radius: 0 5px 5px 0;
+	background: #0091DB;
+	color: #fff;
+	cursor: pointer;
+}
+
+table, tr, th, td {
+	border: 1px solid #ccc;
+	text-align: center;
 }
 </style>
 </head>
@@ -180,7 +190,7 @@ table,tr,th,td{
 					</p>
 				</div>
 				<div class="funcInfo">
-				<div class="myPage">
+					<div class="myPage">
 						<a href="/my/myPageMain">마이 페이지</a>
 					</div>
 					<div class="sendDm">
@@ -188,8 +198,8 @@ table,tr,th,td{
 					</div>
 					<div class="searchBox">
 						<form>
-							<input type="text">
-							<input type="submit" value="검색" id="submitBtn">
+							<input type="text"> <input type="submit" value="검색"
+								id="submitBtn">
 						</form>
 					</div>
 				</div>
@@ -206,18 +216,16 @@ table,tr,th,td{
 		</aside>
 
 		<section>
-			<div id="mypageBoard">
-			
-			</div>
+			<div id="mypageBoard"></div>
 		</section>
 	</main>
 
 	<footer>
 		<%@include file="../about/footer.jsp"%>
 	</footer>
-	
-	
-	
+
+
+
 	<script>
 		document.addEventListener('DOMContentLoaded', () => {
 			
@@ -225,12 +233,19 @@ table,tr,th,td{
 			
 			const myBoardList = document.getElementById('myBoardList');
 			
+			const h1 = document.createElement("h1");
+			
+			h1.innerHTML = "";
+			
+			/* 내가 작성한 게시글 */
+			/* 내가 작성한 게시글 */
+			/* 내가 작성한 게시글 */
+			/* 내가 작성한 게시글 */
 			/* 내가 작성한 게시글 */
 			myBoardList.addEventListener('click', ()=>{
 				mypageBoard.innerHTML = "<p>데이터를 불러오는 중...</p>";
 				
 				const section = document.querySelector('section');
-				const h1 = document.createElement("h1");
 				
 				h1.innerHTML = "내가 작성한 게시글";
 				
@@ -347,8 +362,235 @@ table,tr,th,td{
 			
 			
 			/* 내가 작성한 댓글 */
+			/* 내가 작성한 댓글 */
+			/* 내가 작성한 댓글 */
+			/* 내가 작성한 댓글 */
+			/* 내가 작성한 댓글 */
+			const myReplyList = document.getElementById("myReplyList");
+			
+			myReplyList.addEventListener('click', ()=>{
+				mypageBoard.innerHTML = "<p>데이터를 불러오는 중...</p>";
+				
+				const section = document.querySelector('section');
+				
+				h1.innerHTML = "내가 작성한 댓글";
+				
+				//요소 앞부분에 추가 (h1을 mypageBoard앞에 추가)
+				section.insertBefore(h1, mypageBoard);
+				
+				fetch('/my/myReplyList?username=user1',{
+					method: "GET"
+				})
+				.then(response => {
+					if(!response.ok){
+						throw new Error('Network response was not ok' + response.statusText);
+					}
+					return response.json();
+				})
+				.then(data => {
+					console.log("Recived data:", JSON.stringify(data, null, 2));
+					
+					if(Array.isArray(data)){
+						displayReplyList(data);
+					}else if(typeof data === 'object' && data !== null){
+						displayReplyList([data]);
+					}else{
+						console.error('Unexpected data format:', data);
+						mypageBoard.innerHTML = "<p>데이터를 불러오는데 문제가 발생했습니다.</p>"
+					}
+				})
+				.catch(error => {
+					console.error("ERROR: ", error);
+					mypageBoard.innerHTML = "<p>데이터를 불러오는데 문제가 발생했습니다!"+ error.message +"</p>"
+				})
+			});
 			
 			
+			function displayReplyList(replys){
+			    console.log("Boards received in displayBoardList:", JSON.stringify(replys, null, 2));
+			    console.log("mypageBoard element:", mypageBoard);
+			    
+			    if(!mypageBoard){
+			        console.error("mypageBoard element not found");
+			        return;
+			    }
+			    
+			    mypageBoard.innerHTML = "";
+			    
+			    if(!Array.isArray(replys) || replys.length === 0){
+			        mypageBoard.innerHTML = "<p>게시글이 없거나 데이터 형식이 올바르지 않습니다.</p>";
+			        return;
+			    }
+			    
+			    const table = document.createElement('table');
+			    table.style.width = '100%';
+			    table.style.borderCollapse = 'collapse';
+
+			    // 테이블 헤더 생성
+			    const thead = document.createElement('thead');
+			    const headerRow = document.createElement('tr');
+			    const headers = ['번호', '댓글 내용', '작성자', '게시판 번호', '작성일'];
+			    headers.forEach(text => {
+			        const th = document.createElement('th');
+			        th.textContent = text;
+			        headerRow.appendChild(th);
+			    });
+			    thead.appendChild(headerRow);
+			    table.appendChild(thead);
+			    
+			    // 테이블 본문 생성
+			    const tbody = document.createElement('tbody');
+			    replys.forEach((reply, index) => {
+			        const tr = document.createElement('tr');
+
+			        // 번호
+			        const tdRcode = document.createElement('td');
+			        tdRcode.textContent = reply.rcode;
+			        tr.appendChild(tdRcode);
+
+			        // 댓글 내용
+			        const tdContent = document.createElement('td');
+			        tdContent.textContent = reply.replyContent;
+			        tr.appendChild(tdContent);
+
+			        // 작성자
+			        const tdUsername = document.createElement('td');
+			        tdUsername.textContent = reply.username;
+			        tr.appendChild(tdUsername);
+			        
+			        // 게시판 번호
+			        const tdBno = document.createElement('td');
+			        tdBno.textContent = reply.bno;
+			        tr.appendChild(tdBno);
+
+			        // 작성일
+			        const tdReplyDate = document.createElement('td');
+			        // 날짜 포맷팅 (옵션)
+			        const formattedDate = new Date(reply.replyDate).toLocaleDateString('ko-KR', {
+			            year: 'numeric',
+			            month: '2-digit',
+			            day: '2-digit'
+			        });
+			        tdReplyDate.textContent = formattedDate;
+			        tr.appendChild(tdReplyDate);
+
+			        tbody.appendChild(tr);
+			    });
+			    table.appendChild(tbody);
+			    
+			    mypageBoard.appendChild(table);
+			    console.log("Created table HTML:", table.outerHTML);
+			    console.log("mypageBoard content after append:", mypageBoard.innerHTML);
+			}
+			
+			
+			
+			
+			/* 내가 좋아요한 게시글 */
+			/* 내가 좋아요한 게시글 */
+			/* 내가 좋아요한 게시글 */
+			/* 내가 좋아요한 게시글 */
+			/* 내가 좋아요한 게시글 */
+			const myLikeBoardList = document.getElementById('myLikeBoardList');
+			
+			myLikeBoardList.addEventListener('click', ()=>{
+				mypageBoard.innerHTML = "<p>데이터를 불러오는 중...</p>";
+				
+				const section = document.querySelector('section');
+				
+				h1.innerHTML = "내가 좋아요한 게시글";
+				
+				//요소 앞부분에 추가 (h1을 mypageBoard앞에 추가)
+				section.insertBefore(h1, mypageBoard);
+				
+				fetch('/my/myLikeBoardList?username=user1',{
+					method: "GET"
+				})
+				.then(response => {
+					if(!response.ok){
+						throw new Error('Network response was not ok' + response.statusText);
+					}
+					return response.json();
+				})
+				.then(data => {
+					console.log("Recived data:", JSON.stringify(data, null, 2));
+					
+					if(Array.isArray(data)){
+						displayLikeBoardList(data);
+					}else if(typeof data === 'object' && data !== null){
+						displayLikeBoardList([data]);
+					}else{
+						console.error('Unexpected data format:', data);
+						mypageBoard.innerHTML = "<p>데이터를 불러오는데 문제가 발생했습니다.</p>"
+					}
+				})
+				.catch(error => {
+					console.error("ERROR: ", error);
+					mypageBoard.innerHTML = "<p>데이터를 불러오는데 문제가 발생했습니다!"+ error.message +"</p>"
+				})
+			});
+			
+			
+			function displayLikeBoardList(likeBoards){
+			    console.log("Boards received in displayBoardList:", JSON.stringify(likeBoards, null, 2));
+			    console.log("mypageBoard element:", mypageBoard);
+			    
+			    if(!mypageBoard){
+			        console.error("mypageBoard element not found");
+			        return;
+			    }
+			    
+			    mypageBoard.innerHTML = "";
+			    
+			    if(!Array.isArray(likeBoards) || likeBoards.length === 0){
+			        mypageBoard.innerHTML = "<p>게시글이 없거나 데이터 형식이 올바르지 않습니다.</p>";
+			        return;
+			    }
+			    
+			    const table = document.createElement('table');
+			    table.style.width = '100%';
+			    table.style.borderCollapse = 'collapse';
+
+			    // 테이블 헤더 생성
+			    const thead = document.createElement('thead');
+			    const headerRow = document.createElement('tr');
+			    const headers = ['번호', '게시판 번호', '작성자'];
+			    headers.forEach(text => {
+			        const th = document.createElement('th');
+			        th.textContent = text;
+			        headerRow.appendChild(th);
+			    });
+			    thead.appendChild(headerRow);
+			    table.appendChild(thead);
+			    
+			    // 테이블 본문 생성
+			    const tbody = document.createElement('tbody');
+			    likeBoards.forEach((like, index) => {
+			        const tr = document.createElement('tr');
+
+			        // 번호
+			        const tdLikeno = document.createElement('td');
+			        tdLikeno.textContent = like.likeno;
+			        tr.appendChild(tdLikeno);
+
+			        // 게시판 번호
+			        const tdBno = document.createElement('td');
+			        tdBno.textContent = like.bno;
+			        tr.appendChild(tdBno);
+
+			        // 작성자
+			        const tdUsername = document.createElement('td');
+			        tdUsername.textContent = like.username;
+			        tr.appendChild(tdUsername);
+
+			        tbody.appendChild(tr);
+			    });
+			    table.appendChild(tbody);
+			    
+			    mypageBoard.appendChild(table);
+			    console.log("Created table HTML:", table.outerHTML);
+			    console.log("mypageBoard content after append:", mypageBoard.innerHTML);
+			}
 
 		});
 		
