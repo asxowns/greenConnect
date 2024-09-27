@@ -15,7 +15,6 @@ main {
 
 aside {
 	width: 200px;
-	border: 1px solid #ccc;
 }
 
 section {
@@ -67,6 +66,39 @@ section {
 	color:#a7a7a7;
 }
 
+.myPage{
+	text-align:center;
+}
+.myPage a {
+	width: 187px;
+	height: 40px;
+	background: #0091DB;
+	text-align: center;
+	border-radius: 5px;
+	align-content: center;
+	display: inline-block;
+	color: #fff;
+	font-size: 14px;
+}
+
+.sendDm{
+	text-align:center;
+}
+
+.sendDm a {
+	width: 187px;
+	height: 40px;
+	background: #EEEEEE;
+	border: 1px solid #ccc;
+	text-align: center;
+	border-radius: 5px;
+	align-content: center;
+	display: inline-block;
+	color: #000;
+	font-size: 14px;
+	margin:15px 0;
+}
+
 .boardList {
 	padding: 20px;
 }
@@ -91,6 +123,7 @@ section {
 	width:140px;
 	height:35px;
 	border:1px solid #ccc;
+	border-right:none;
 	border-radius:5px 0 0 5px;
 	box-sizing:border-box;
 	padding-left:5px;
@@ -143,6 +176,12 @@ section {
 					</p>
 				</div>
 				<div class="funcInfo">
+				<div class="myPage">
+						<a href="/my/myPageMain">마이 페이지</a>
+					</div>
+					<div class="sendDm">
+						<a href="#" onclick="return openDmWindow();">쪽지 보내기</a>
+					</div>
 					<div class="searchBox">
 						<form>
 							<input type="text">
@@ -154,10 +193,9 @@ section {
 
 			<div class="boardList">
 				<ul>
-					<li><a herf="#">대시보드</a></li>
-					<li><a herf="#">회원 관리</a></li>
-					<li><a herf="#">등급 관리</a></li>
-					<li><a herf="#">공지 관리</a></li>
+					<li><a href="#">내가 작성한 게시글</a></li>
+					<li><a href="#">내가 작성한 댓글</a></li>
+					<li><a href="/">내가 좋아요한 게시글</a></li>
 				</ul>
 			</div>
 		</aside>

@@ -171,10 +171,10 @@ section {
 
 			<div class="boardList">
 				<ul>
-					<li><a herf="#">대시보드</a></li>
-					<li><a herf="#">회원 관리</a></li>
-					<li><a herf="#">등급 관리</a></li>
-					<li><a herf="#">공지 관리</a></li>
+					<li><a href="#">대시보드</a></li>
+					<li><a href="#">회원 관리</a></li>
+					<li><a href="#">등급 관리</a></li>
+					<li><a href="#">공지 관리</a></li>
 				</ul>
 			</div>
 		</aside>
